@@ -4,10 +4,6 @@
  */
 var maxArea = function (height) {
 
-    // if (height.length === 2) {
-    //     return Math.max(height[0], height[1]) * 1
-    // }
-
     let right = height.length - 1, left = 0, currMaxAmount = 0;
 
     while (left < right) {
