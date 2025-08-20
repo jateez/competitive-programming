@@ -1,6 +1,5 @@
 class Solution {
     Stack<Character> stack = new Stack();
-
     public boolean isValid(String s) {
         Map<Character, Character> map = new HashMap<>();
         map.put(')', '(');
