@@ -11,7 +11,7 @@ class Solution {
                 stack.push(c);
             } else if (stack.empty()) {
                 return false;
-            } else if (!stack.pop().equals(map.get(c))) {
+            } else if (stack.pop() != (map.get(c))) {
                 return false;
             }
         }
