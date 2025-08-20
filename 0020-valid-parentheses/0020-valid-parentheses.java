@@ -1,10 +1,10 @@
 class Solution {
+    Stack<Character> stack = new Stack();
     public boolean isValid(String s) {
         Map<Character, Character> map = new HashMap<>();
         map.put(')', '(');
         map.put('}', '{');
         map.put(']', '[');
-        Stack<Character> stack = new Stack();
         var len = s.length();
         for (int i = 0; i < len; i++) {
             char c = s.charAt(i);
