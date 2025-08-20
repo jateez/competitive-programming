@@ -4,7 +4,7 @@ class Solution {
         map.put(')', '(');
         map.put('}', '{');
         map.put(']', '[');
-        Stack stack = new Stack<Character>();
+        Stack stack = new Stack();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (c == '(' || c == '{' || c == '[') {
