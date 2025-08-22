@@ -5,14 +5,14 @@ class Solution {
         int lowestPrice = prices[0];
         int right = 1;
         while (right < prices.length) {
-            currMaxProfit = Math.max(currMaxProfit, (prices[right] - lowestPrice));
-            if (lowestPrice > prices[right]) {
+            if (currMaxProfit < (prices[right] - lowestPrice)) {
+                currMaxProfit = (prices[right] - lowestPrice);
+            } else if (lowestPrice > prices[right]) {
                 lowestPrice = prices[right];
                 left = right;
             }
             right++;
         }
-        System.gc();
         return currMaxProfit;
     }
 }
