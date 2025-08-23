@@ -1,5 +1,6 @@
 class Solution {
     Stack<Character> stack = new Stack();
+
     public boolean isValid(String s) {
         Map<Character, Character> map = new HashMap<>();
         map.put(')', '(');
@@ -10,9 +11,7 @@ class Solution {
             char c = s.charAt(i);
             if (c == '(' || c == '{' || c == '[') {
                 stack.push(c);
-            } else if (stack.isEmpty()) {
-                return false;
-            } else if (stack.pop() != map.get(c)) {
+            } else if (stack.isEmpty() || stack.pop() != map.get(c)) {
                 return false;
             }
         }
