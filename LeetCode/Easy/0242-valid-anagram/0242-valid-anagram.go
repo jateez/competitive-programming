@@ -1,25 +1,18 @@
 func isAnagram(s string, t string) bool {
-	if len(s) != len(t) {
-		return false
-	}
+    if len(s) != len(t) {
+        return false
+    }   
 
-	m := map[rune]int{}
+    m := map[rune]int{}
+    for _, c := range s {
+        m[rune(c)]++ 
+    }
+    for _, c := range t {
+        if m[rune(c)] == 0 {
+            return false
+        }
+        m[rune(c)]--
+    }
 
-	for _, char := range s {
-		m[char] = m[char] + 1
-	}
-
-	for _, char := range t {
-		val, ok := m[char]
-		if !ok {
-			return false
-		}
-		if (val - 1) < 0 {
-			return false
-		}
-
-		m[char] = val - 1
-	}
-
-	return true
+    return true
 }
