@@ -1,29 +1,28 @@
 func threeSum(nums []int) [][]int {
-	s := [][]int{}
 	sort.Ints(nums)
+	ans := [][]int{}
 
 	for i, num := range nums {
-		left := i + 1
-		right := len(nums) - 1
-		if i > 0 && nums[i] == nums[i-1] {
+		if i > 0 && num == nums[i-1] {
 			continue
 		}
+		left := i + 1
+		right := len(nums) - 1
+
 		for left < right {
-			sum := num + nums[left] + nums[right]
-			if sum > 0 {
+			if nums[left]+nums[right]+num > 0 {
 				right--
-			} else if sum < 0 {
+			} else if nums[left]+nums[right]+num < 0 {
 				left++
 			} else {
-				s = append(s, []int{num, nums[left], nums[right]})
+				ans = append(ans, []int{num, nums[left], nums[right]})
 				left++
 				right--
-				for left < right && nums[left] == nums[left-1] {
+				for nums[left] == nums[left-1] && left < right {
 					left++
 				}
 			}
 		}
 	}
-
-	return s
+	return ans
 }
