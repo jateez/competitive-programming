@@ -6,32 +6,29 @@ type MinStack struct {
 func Constructor() MinStack {
 	return MinStack{
 		st:  []int{},
-		min: []int{math.MaxInt},
+		min: []int{},
 	}
 }
 
 func (this *MinStack) Push(val int) {
 	this.st = append(this.st, val)
-	if val < this.min[0] {
-		this.min[0] = val
-	}
+    if len(this.min) > 0 {
+        if val < this.min[len(this.min)-1] {
+            this.min = append(this.min, val)
+        } else {
+            this.min = append(this.min, this.min[len(this.min)-1])
+        }
+    } else {
+        this.min = append(this.min, val)
+    }
 }
 
 func (this *MinStack) Pop() {
 	if len(this.st) == 0 {
 		fmt.Errorf("stack is empty")
 	}
-	if this.min[0] == this.st[len(this.st)-1] {
-		this.st = this.st[:len(this.st)-1]
-		this.min[0] = math.MaxInt
-		for _, num := range this.st {
-			if num < this.min[0] {
-				this.min[0] = num
-			}
-		}
-	} else {
-		this.st = this.st[:len(this.st)-1]
-	}
+    this.st = this.st[:len(this.st)-1]
+    this.min = this.min[:len(this.min)-1]
 }
 
 func (this *MinStack) Top() int {
@@ -43,7 +40,7 @@ func (this *MinStack) GetMin() int {
 	if len(this.min) == 0 {
 		fmt.Errorf("stack is empty")
 	}
-	return this.min[0]
+	return this.min[len(this.min)-1]
 }
 
 /**
